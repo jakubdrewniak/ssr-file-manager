@@ -1,2 +1,0 @@
-push check
-sourcetree check
