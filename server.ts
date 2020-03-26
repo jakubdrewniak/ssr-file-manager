@@ -6,12 +6,13 @@ import { join } from 'path';
 
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
-import { existsSync } from 'fs';
+import { existsSync, readFile } from 'fs';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app() {
   const server = express();
   const distFolder = join(process.cwd(), 'dist/ssr-file-manager/browser');
+  const testFile = join(process.cwd(), 'test.txt');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
@@ -30,8 +31,13 @@ export function app() {
   }));
 
   server.get('/test', (req, res) => {
-    const testObject = {prop1: 'Hello world', prop2: 5}
-    res.json(testObject)
+    // const testObject = {prop1: 'Hello world', prop2: 5}
+    // res.json(testObject)
+
+    readFile(testFile, "utf8", function(err, data){
+      if(err) throw err;
+      res.send({data: data});
+  });
   })
 
   // All regular routes use the Universal engine

@@ -15,7 +15,7 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     this.testService.getTestData()
       .subscribe(data => {
-        console.log(data, (<any>data).prop1, (<any>data).prop2)
+        console.log(data)
       })
   }
 
