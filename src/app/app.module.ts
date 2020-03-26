@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MainComponent } from './main/main.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TestService } from './communication/test.service';
 
 @NgModule({
    declarations: [
@@ -11,9 +13,12 @@ import { MainComponent } from './main/main.component';
    ],
    imports: [
       AppRoutingModule,
-      BrowserModule.withServerTransition({ appId: 'serverApp' })
+      BrowserModule.withServerTransition({ appId: 'serverApp' }),
+      HttpClientModule
    ],
-   providers: [],
+   providers: [
+      TestService
+   ],
    bootstrap: [AppComponent]
 })
 export class AppModule { }
