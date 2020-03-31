@@ -2,8 +2,13 @@ import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs/internal/Observable'
 
-interface FilesList {
+export interface FilesList {
     files: string[]
+}
+
+export interface TextFile {
+    fileName: string,
+    content: string
 }
 
 @Injectable()
@@ -12,7 +17,11 @@ export class TestService {
 
     constructor(private http: HttpClient) { }
 
-    getTestData(): Observable<FilesList> {
+    getFilesList(): Observable<FilesList> {
         return this.http.get(this.configUrl) as Observable<FilesList>
+    }
+
+    getFileByName(fileName: string): Observable<TextFile> {
+        return this.http.get(`${this.configUrl}/${fileName}`) as Observable<TextFile>
     }
 }

@@ -1,4 +1,8 @@
 <h2>List of files</h2>
 <ul *ngIf="filesList">
-    <li *ngFor="let file of filesList">{{file}}</li>
+    <li *ngFor="let file of filesList" (click)="selectFile(file)">{{file}}</li>
 </ul>
+<ng-container *ngIf="selectedFile">
+    <h3>File name: {{selectedFile.fileName}}</h3>
+    <file-content [content]="selectedFile.content"></file-content>
+</ng-container>

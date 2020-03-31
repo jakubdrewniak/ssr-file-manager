@@ -6,7 +6,7 @@ import { join } from 'path';
 
 import { AppServerModule } from './src/main.server';
 import { APP_BASE_HREF } from '@angular/common';
-import { existsSync, readdir } from 'fs';
+import { existsSync, readdir, readFile } from 'fs';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app() {
@@ -30,6 +30,14 @@ export function app() {
         return console.log('Unable to scan directory: ' + err);
       }
       res.status(200).send({ files })
+    });
+  })
+
+  server.get('/test/:id', (req, res) => {
+    const filePath = join(testFilesFolder, req.params.id)
+    readFile(filePath, "utf8", function (err, data) {
+      if (err) throw err;
+      res.send({ fileName: req.params.id, content: data });
     });
   })
 

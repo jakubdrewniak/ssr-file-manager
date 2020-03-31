@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, Input } from '@angular/core'
 
 @Component({
   selector: 'file-content',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core'
   styleUrls: ['./file-content.component.scss']
 })
 export class FileContentComponent implements OnInit {
+
+  @Input() content: string
 
   constructor(
   ) { }
