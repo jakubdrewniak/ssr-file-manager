@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { MainComponent } from './main/main.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TestService } from './communication/test.service';
+import { FileContentComponent } from './file-content/file-content.component';
 
 @NgModule({
    declarations: [
       AppComponent,
-      MainComponent
+      MainComponent,
+      FileContentComponent
    ],
    imports: [
       AppRoutingModule,
